@@ -1,44 +1,44 @@
-const STORAGE_KEY = 'celebrare_fav_photos';
+const STORAGE_KEY = 'celebrare_fav_photos'
 
-// Helper to safely read initial favourites from localStorage
+// to safely read initial favourites from localStorage
 export const getInitialFavourites = () => {
   try {
-    const saved = localStorage.getItem(STORAGE_KEY);
-    return saved ? JSON.parse(saved) : [];
+    const saved = localStorage.getItem(STORAGE_KEY)
+    return saved ? JSON.parse(saved) : []
   } catch (err) {
-    console.error('Error reading localStorage:', err);
-    return [];
+    console.error('Error reading localStorage:', err)
+    return []
   }
-};
+}
 
 export const favouritesReducer = (state, action) => {
-  let updatedState;
+  let updatedState
 
   switch (action.type) {
     case 'TOGGLE_FAVOURITE': {
-      const photoId = action.payload;
-      const exists = state.includes(photoId);
+      const photoId = action.payload
+      const exists = state.includes(photoId)
 
       if (exists) {
         // Remove from favourites
-        updatedState = state.filter((id) => id !== photoId);
+        updatedState = state.filter(id => id !== photoId)
       } else {
         // Add to favourites
-        updatedState = [...state, photoId];
+        updatedState = [...state, photoId]
       }
-      break;
+      break
     }
 
     default:
-      return state;
+      return state
   }
 
   // Persist updated list to localStorage
   try {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(updatedState));
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(updatedState))
   } catch (err) {
-    console.error('Error writing to localStorage:', err);
+    console.error('Error writing to localStorage:', err)
   }
 
-  return updatedState;
-};
+  return updatedState
+}
