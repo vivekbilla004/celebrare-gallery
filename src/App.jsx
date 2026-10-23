@@ -1,15 +1,12 @@
-import { useState } from 'react'
-import heroImg from './assets/hero.png'
-import reactLogo from './assets/react.svg'
-import viteLogo from './assets/vite.svg'
-import './App.css'
+import React from "react";
+import Gallery from "./components/Gallery";
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
-    <div className="bg-yellow-300">Celebrare-gallery</div>
-  )
+    <div className="min-h-screen bg-slate-50">
+      <Gallery />
+    </div>
+  );
 }
 
-export default App
+export default App;
